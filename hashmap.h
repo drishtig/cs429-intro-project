@@ -1,9 +1,20 @@
 #ifndef HASHMAP_H
 #define HASHMAP_H
+//hashtable item definition
+typedef struct IntToIntHashItem
+{
+    int key;
+    int value;
+	struct IntToIntHashItem *next;
+} IntToIntHashItem;
+
 
 struct IntToIntHashMap{
-	//TODO: fill this in
+	int tableSize;
+	IntToIntHashItem* hash_table[10];
 };
+
+void printHashTable(struct IntToIntHashMap* hmap);
 
 struct IntToIntHashMap* createIntToIntHashMap(int numBuckets);
 
@@ -15,9 +26,19 @@ void intToIntHashMapRemove(struct IntToIntHashMap* hmap, int key);
 
 void destroyIntToIntHashMap(struct IntToIntHashMap* hmap);
 
+void destroyIntToIntHashItem(struct IntToIntHashItem* item);
+
+typedef struct StrToIntHashItem
+{
+    char* key;
+	int value;
+	struct StrToIntHashItem *next;
+} StrToIntHashItem;
 
 struct StrToIntHashMap{
-	//TODO: fill this in
+	int tableSize;
+	StrToIntHashItem* hash_table[10];
+	
 };
 
 struct StrToIntHashMap* createStrToIntHashMap(int numBuckets);
@@ -29,5 +50,7 @@ int strToIntHashMapGet(struct StrToIntHashMap* hmap, char* key);
 void strToIntHashMapRemove(struct StrToIntHashMap* hmap, char* key);
 
 void destroyStrToIntHashMap(struct StrToIntHashMap* hmap);
+
+void destroyStrToIntHashItem(struct StrToIntHashItem* item);
 
 #endif // HASHMAP_H
