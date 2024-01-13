@@ -23,12 +23,11 @@ int main(int argc, char** argv){
 
 		char command[20];
 		int number1;
-		int number2;
 
 		printf("Get <Key> or Put <Key> <Value>. Examples include \"Get 9\" or \"Put 8 10\". If you want to exit, enter EXIT: \n");
-		scanf("%s", command);
+		if(!scanf("%s", command)) { printf ("Error reading");} ;
 		if (strcmp(command, "Get") == 0){
-			scanf("%d", &number1); 
+			if (!scanf("%d", &number1)) {printf("Error reading");}; 
 			int value = intToIntHashMapGet(h1, number1);
 			if (value != 0){
 				printf("Found here is the key value pair!: {%d, %d}\n", number1, value);
@@ -39,7 +38,8 @@ int main(int argc, char** argv){
 
 		}
 		else if (strcmp(command, "Put") == 0){
-			scanf("%d%d", &number1, &number2); 
+		        int number2;
+			if (!scanf("%d%d", &number1, &number2)) {printf("Error reading");}; 
 			intToIntHashMapInsert(h1, number1, number2);
 			
 		}
